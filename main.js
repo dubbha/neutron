@@ -8,11 +8,12 @@ require('electron-reload')(__dirname, {
 
 function createWindow () { // create browser window
   const win = new BrowserWindow({
-    width: 800,
-    height: 600,
+    width: 1366,
+    height: 768,
     webPreferences: {
       nodeIntegration: true, // grant the window full access to Node.js API
-      contextIsolation: false,
+      contextIsolation: true, // run website in a different js context (different window object) for security
+      preload: path.join(__dirname, 'preload.js'), // preload script exposing minimal API to renderers scripts
     }
   })
 
